@@ -37,7 +37,7 @@ ct.description;
 ct.sequence;
 
 /**
- * An array of position pair tuples that indicate the pairs in the structure.
+ * An array of position pair tuples indicating the pairs in the structure.
  *
  * A position pair is a pairing of two positions in a sequence using one-based indexing.
  */
