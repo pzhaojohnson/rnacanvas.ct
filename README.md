@@ -114,3 +114,13 @@ var s = (
 
 isCT(s); // false
 ```
+
+A header line by itself will also result in `false` being returned.
+
+```javascript
+var s = (
+  '0	dG = 0.00 [Initially 0.00] 26Apr18-14-48-11'
+);
+
+isCT(s); // false
+```
