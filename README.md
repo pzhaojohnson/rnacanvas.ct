@@ -51,3 +51,65 @@ ct.positionPairs;
  */
 ct.numberingOffset;
 ```
+
+## `function isCT()`
+
+Returns `true` if a string is in CT format
+(e.g., could be the text contents of a CT file).
+
+Returns `false` otherwise.
+
+```javascript
+var s = (
+  '24	dG = -14.20 [Initially -14.20] 26Apr18-14-48-11\n'
+  + '1	A	0	2	0	1\n'
+  + '2	U	1	3	0	2\n'
+  + '3	G	2	4	0	3\n'
+  + '4	C	3	5	0	4\n'
+  + '5	A	4	6	0	5'
+);
+
+isCT(s); // true
+```
+
+Extra leading and trailing empty and whitespace lines are allowed,
+as well as comment lines beginning with `#`.
+
+```javascript
+var s = (
+  '\n'
+  + '  \n'
+  + '# A comment.\n'
+  + '\t\n'
+  + '24	dG = -14.20 [Initially -14.20] 26Apr18-14-48-11\n'
+  + '1	A	0	2	0	1\n'
+  + '2	U	1	3	0	2\n'
+  + '3	G	2	4	0	3\n'
+  + '4	C	3	5	0	4\n'
+  + '5	A	4	6	0	5\n'
+  + '\n'
+  + '# Another comment.\t'
+  + '\t\n'
+);
+
+isCT(s); // true
+```
+
+However, extra lines with text content that are not commented out are not allowed in CT format.
+
+```javascript
+var s = (
+  'Not commented out.\n'
+  + '\n'
+  + '24	dG = -14.20 [Initially -14.20] 26Apr18-14-48-11\n'
+  + '1	A	0	2	0	1\n'
+  + '2	U	1	3	0	2\n'
+  + '3	G	2	4	0	3\n'
+  + '4	C	3	5	0	4\n'
+  + '5	A	4	6	0	5\n'
+  + '\n'
+  + 'Not commented out either.'
+);
+
+isCT(s); // false
+```
