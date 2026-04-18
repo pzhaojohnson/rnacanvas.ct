@@ -2,6 +2,8 @@ import { parseCT } from './parseCT';
 
 import { splitLines } from '@rnacanvas/utilities';
 
+import { first } from '@rnacanvas/utilities';
+
 /**
  * Returns `true` if a string is in CT format
  * (e.g., could be the text contents of a CT file).
@@ -23,14 +25,14 @@ export function isCT(s: string): boolean {
 
   let lines = splitLines(s);
 
-  // find the index of the first line that's not empty, whitespace or a comment line
-  let headerIndex = lines.findIndex(line => !isEmptyString(line) && !isWhitespace(line) && !isCommentLine(line));
+  // prune lines
+  lines = lines.filter(line => !isEmptyString(line) && !isWhitespace(line) && !isCommentLine(line));
 
-  if (headerIndex < 0) {
+  if (lines.length == 0) {
     return false;
   }
 
-  let headerLine = lines[headerIndex];
+  let headerLine = first(lines);
 
   let sequenceLength = Number.parseFloat(headerLine.trim().split(/\s+/)[0]);
 
@@ -39,23 +41,26 @@ export function isCT(s: string): boolean {
     return false;
   }
 
+  let positionLines = lines.slice(1);
+
   // there must be at least one position line
-  if (headerIndex == lines.length - 1) {
+  if (positionLines.length == 0) {
     return false;
   }
 
-  let firstPositionLine = lines[headerIndex + 1];
+  return positionLines.every(line => {
+    let items = line.trim().split(/\s+/);
 
-  let firstPositionItems = firstPositionLine.trim().split(/\s+/);
+    // there must be a partner column
+    if (items.length < 5) {
+      return false;
+    }
 
-  // the partner column must be included
-  if (firstPositionItems.length < 5) {
-    return false;
-  }
+    let partner = Number.parseFloat(items[4]);
 
-  let partner = Number.parseFloat(firstPositionItems[4]);
-
-  return Number.isInteger(partner);
+    // partner must be specified
+    return Number.isInteger(partner);
+  });
 }
 
 function isEmptyString(s: string): boolean {

@@ -28,6 +28,16 @@ test('`function isCT()`', () => {
     + '1	a	0	2'
   )).toBe(false);
 
+  // one line is missing partner column
+  expect(isCT(
+    '50	dG = -10.90 [Initially -10.90] 26Apr18-13-56-50\n'
+    + '1	a	0	2	0	1\n'
+    + '2	g	1	3	0	2\n'
+    + '3	c	2	4	0	3\n'
+    + '4	g	3	5\n'
+    + '5	c	4	6	0	5'
+  )).toBe(false);
+
   // bare minimum (but sequence length is not a number)
   expect(isCT(
     'A\n'
