@@ -60,6 +60,7 @@ Returns `true` if a string is in CT format
 Returns `false` otherwise.
 
 ```javascript
+// a 5-nt structure (with no base-pairs)
 var s = (
   '5	dG = -2.00 [Initially -2.00] 26Apr18-14-48-11\n'
   + '1	A	0	2	0	1\n'
