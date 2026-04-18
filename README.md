@@ -61,7 +61,7 @@ Returns `false` otherwise.
 
 ```javascript
 var s = (
-  '24	dG = -14.20 [Initially -14.20] 26Apr18-14-48-11\n'
+  '5	dG = -2.00 [Initially -2.00] 26Apr18-14-48-11\n'
   + '1	A	0	2	0	1\n'
   + '2	U	1	3	0	2\n'
   + '3	G	2	4	0	3\n'
@@ -81,7 +81,7 @@ var s = (
   + '  \n'
   + '# A comment.\n'
   + '\t\n'
-  + '24	dG = -14.20 [Initially -14.20] 26Apr18-14-48-11\n'
+  + '5	dG = -2.00 [Initially -2.00] 26Apr18-14-48-11\n'
   + '1	A	0	2	0	1\n'
   + '2	U	1	3	0	2\n'
   + '3	G	2	4	0	3\n'
@@ -101,7 +101,7 @@ However, extra lines with text content that are not commented out are not allowe
 var s = (
   'Not commented out.\n'
   + '\n'
-  + '24	dG = -14.20 [Initially -14.20] 26Apr18-14-48-11\n'
+  + '5	dG = -2.00 [Initially -2.00] 26Apr18-14-48-11\n'
   + '1	A	0	2	0	1\n'
   + '2	U	1	3	0	2\n'
   + '3	G	2	4	0	3\n'
