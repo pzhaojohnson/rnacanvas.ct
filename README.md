@@ -96,7 +96,7 @@ var s = (
 isCT(s); // true
 ```
 
-However, extra lines with text content that are not commented out are not allowed in CT format.
+However, extra lines with text content (that are not commented out) are not allowed in CT format.
 
 ```javascript
 var s = (
